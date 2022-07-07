@@ -7,7 +7,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 function Sidebar() {
     return (
         <div className='sidebar'>
-            <button>
+            <button className='sidebar-button'>
                 <FontAwesomeIcon icon={faBars} flip="horizontal" />
             </button>
             <div>

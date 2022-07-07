@@ -1,0 +1,32 @@
+.today {
+    padding-left: 120px;
+    padding-top: 40px;
+    width: 50%;
+
+}
+
+
+h1 {
+    font-size: 23px;
+    margin: 0;
+    padding-bottom: 10px;
+    color: rgb(41, 41, 41);
+
+}
+
+.today-date {
+    margin: 0;
+    padding-bottom: 30px;
+    font-size: 14px;
+    color: rgb(94, 94, 94);
+}
+
+.new-task-button {
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.plus-icon {
+    padding-right: 10px;
+}

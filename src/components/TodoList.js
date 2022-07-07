@@ -15,7 +15,7 @@ function TodoList() {
             <TaskList />
             <button onClick={handleAddTaskClick}>Add a task</button>
             <TaskEditor />
-            <OptionsButton />
+            <OptionsButton><FontAwesomeIcon icon={faEllipsis} /></OptionsButton>
         </div>
 
     )

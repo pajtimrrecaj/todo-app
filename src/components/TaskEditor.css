@@ -1,0 +1,136 @@
+.task-editor {
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px 10px;
+}
+
+.due-date-button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    height: fit-content;
+    width: fit-content;
+}
+
+
+
+.action-button {
+    padding: 7px 15px;
+    font-size: 15px;
+    border: none;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+#cancel-button {
+    background-color: rgb(238, 238, 238);
+    color: rgb(68, 68, 68);
+    margin-right: 10px;
+}
+
+#cancel-button:hover {
+    background-color: rgb(224, 224, 224);
+    cursor: pointer;
+}
+
+#add-button {
+    color: white;
+    background-color: #5268F5;
+    cursor: pointer;
+}
+
+#add-button:disabled {
+    background-color: #c6cbeb;
+    cursor: not-allowed;
+}
+
+.calendar-icon {
+    color: rgb(138, 138, 138);
+    width: 20px;
+    height: 20px;
+}
+
+.task-name {
+    width: 100%;
+    border: none;
+    padding-bottom: 15px;
+    font-size: 16px;
+    color: rgb(36, 36, 36);
+
+}
+
+.task-name:focus,
+.task-description:focus {
+    outline: none;
+}
+
+.task-description {
+    resize: none;
+    overflow: auto;
+    border: none;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 14px;
+    padding-left: 2px;
+    cursor: text;
+    color: rgb(36, 36, 36);
+}
+
+[contenteditable][placeholder]:empty:before {
+    content: attr(placeholder);
+    position: absolute;
+    color: gray;
+    background-color: transparent;
+}
+
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: rgb(0, 0, 0);
+    font-family: 'Roboto';
+}
+
+.task-name::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    font-size: 16px;
+    font-weight: 500;
+
+}
+
+.task-description::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    font-size: 14px;
+    font-weight: 300;
+
+}
+
+.due-date-input {
+    border: none;
+    width: 70px;
+    color: rgb(97, 97, 97);
+    cursor: default;
+}
+
+.due-date-input:focus {
+    outline: none;
+}
+
+.due-date-box button {
+
+    padding: 0;
+    margin-left: -10px;
+    padding-right: 20px;
+    cursor: default;
+}
+
+.due-date-box button svg {
+    padding: 0
+}
+
+.due-date-box {
+    width: auto;
+    justify-content: flex-end;
+}

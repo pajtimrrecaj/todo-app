@@ -1,18 +1,40 @@
+import { useState } from 'react';
+import './Today.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import TaskList from './TaskList';
+import TaskEditor from './TaskEditor';
 
-import TaskList from '../TaskList/TaskList';
+function AddTaskButton({ onClick }) {
+    return (
+        <button className='new-task-button' onClick={onClick}>
+            <FontAwesomeIcon icon={faPlus} className='plus-icon' />
+            Add a task
+        </button>
+    )
+}
 
 function Today() {
+    const [newTask, setNewTask] = useState(false);
+
+    var options = { weekday: 'long', month: 'long', day: 'numeric' };
+    var date = new Date().toLocaleDateString('en-us', options);
+
+    function handleNewTask() {
+        setNewTask(true);
+    }
+
+    function handleCancel() {
+        setNewTask(false);
+    }
+
+
     return (
-        <div>
-            <h1>Title</h1>
-            <button>
-                <FontAwesomeIcon icon={faEllipsis} />
-            </button>
-            <p>Date</p>
-            <TaskList />
-            <button>Add a task</button>
+        <div className='today'>
+            <h1>Today</h1>
+            <p className='today-date'>{date}</p>
+            {newTask ? <TaskEditor onCancelClick={handleCancel} /> : <AddTaskButton onClick={handleNewTask} />}
+
         </div>
     )
 }

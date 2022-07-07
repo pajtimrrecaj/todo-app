@@ -11,7 +11,7 @@ function Navbar() {
             <button className='home-button'>Todos</button>
             <span className='search-bar'>
                 <input type="text" placeholder='Search' className='search-field'></input>
-                <FontAwesomeIcon icon={faMagnifyingGlass} flip="horizontal" />
+                <FontAwesomeIcon icon={faMagnifyingGlass} flip="horizontal" className='search-icon' />
             </span>
         </div>
     )

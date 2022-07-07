@@ -1,12 +1,12 @@
 import './Main.css';
 
-import Today from "../Today/Today";
+import Today from './Today';
 
 function Main() {
     return (
-        <div className=''>
-            <Today />
-        </div>
+
+        <Today />
+
     )
 }
 

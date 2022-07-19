@@ -6,17 +6,21 @@
     justify-content: space-between;
     align-items: flex-end;
     padding: 10px 10px;
-}
-
-.due-date-button {
-    border: none;
-    background-color: transparent;
-    padding: 0;
     height: fit-content;
-    width: fit-content;
+
 }
 
+.textarea {
+    resize: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    color: rgb(36, 36, 36);
+    margin-bottom: 10px;
+    font-family: 'Roboto';
 
+}
 
 .action-button {
     padding: 7px 15px;
@@ -52,6 +56,7 @@
     color: rgb(138, 138, 138);
     width: 20px;
     height: 20px;
+
 }
 
 .task-name {
@@ -68,69 +73,12 @@
     outline: none;
 }
 
-.task-description {
-    resize: none;
-    overflow: auto;
-    border: none;
-    width: 100%;
-    margin-bottom: 20px;
-    font-size: 14px;
-    padding-left: 2px;
-    cursor: text;
-    color: rgb(36, 36, 36);
-}
 
-[contenteditable][placeholder]:empty:before {
-    content: attr(placeholder);
-    position: absolute;
-    color: gray;
-    background-color: transparent;
-}
-
-::-webkit-input-placeholder {
-    /* Chrome/Opera/Safari */
-    color: rgb(0, 0, 0);
-    font-family: 'Roboto';
-}
 
 .task-name::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
+    color: rgb(0, 0, 0);
+    font-family: 'Roboto';
     font-size: 16px;
     font-weight: 500;
-
-}
-
-.task-description::-webkit-input-placeholder {
-    /* Chrome/Opera/Safari */
-    font-size: 14px;
-    font-weight: 300;
-
-}
-
-.due-date-input {
-    border: none;
-    width: 70px;
-    color: rgb(97, 97, 97);
-    cursor: default;
-}
-
-.due-date-input:focus {
-    outline: none;
-}
-
-.due-date-box button {
-
-    padding: 0;
-    margin-left: -10px;
-    padding-right: 20px;
-    cursor: default;
-}
-
-.due-date-box button svg {
-    padding: 0
-}
-
-.due-date-box {
-    width: auto;
-    justify-content: flex-end;
 }

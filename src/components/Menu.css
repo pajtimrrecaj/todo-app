@@ -1,0 +1,40 @@
+.menu {
+    width: 20%;
+}
+
+
+.menu-open {
+    background-color: #FFE4D6;
+    height: 100%;
+    animation-duration: 2s;
+    animation-name: slidein;
+}
+
+.menu-close {
+    animation-name: slideout;
+    animation-duration: 2s;
+}
+
+@keyframes slidein {
+
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 20%;
+    }
+
+}
+
+@keyframes slideout {
+
+    from {
+        width: 20%;
+    }
+
+    to {
+        width: 0%;
+    }
+
+}

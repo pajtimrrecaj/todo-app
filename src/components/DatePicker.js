@@ -6,23 +6,21 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import './DatePicker.css'
 import { forwardRef } from "react";
 
-export default function ReactDatePicker({ dueDate, onDatePick }) {
-    const [startDate, setStartDate] = useState(null);
+export default function ReactDatePicker({ dueDate, onDatePick, onDateRemove }) {
     const [calendarIsOpen, setCalendarIsOpen] = useState(false);
     const DateInput = forwardRef(({ value }, ref) => (
         <button className="date-input" onClick={() => { setCalendarIsOpen(true) }} ref={ref}>
             <CalendarMonthIcon id="calendar-icon" />
-            {startDate !== null && <div className="date-input-text">{value}</div>}
+            <div className="date-input-text">{dueDate !== '' ? value : 'Due date'}</div>
         </button>
     ));
     return (
-        <DatePicker selected={startDate}
-            onChange={(date) => setStartDate(date)}
+        <DatePicker selected={dueDate}
+            onChange={onDatePick}
             customInput={<DateInput />}
             open={calendarIsOpen}
             onSelect={() => { setCalendarIsOpen(false) }}
             onClickOutside={() => { setCalendarIsOpen(false) }}
-
             popperModifiers={[
                 {
                     name: "offset",
@@ -42,7 +40,7 @@ export default function ReactDatePicker({ dueDate, onDatePick }) {
         >
             <div>
                 <button className="remove-date-button" onClick={() => {
-                    setStartDate(null);
+                    onDateRemove();
                     setCalendarIsOpen(false);
 
                 }}>

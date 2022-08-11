@@ -1,5 +1,5 @@
 .task-editor {
-    border: 1px solid rgb(204, 204, 204);
+    border: 1px solid rgb(172, 172, 172);
     border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -7,6 +7,8 @@
     align-items: flex-end;
     padding: 10px 10px;
     height: fit-content;
+    margin-bottom: 20px;
+    margin-top: 20px;
 
 }
 

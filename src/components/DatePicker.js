@@ -7,6 +7,7 @@ import './DatePicker.css'
 import { forwardRef } from "react";
 
 export default function ReactDatePicker({ dueDate, onDatePick, onDateRemove }) {
+    const [startDate, setStartDate] = useState(new Date());
     const [calendarIsOpen, setCalendarIsOpen] = useState(false);
     const DateInput = forwardRef(({ value }, ref) => (
         <button className="date-input" onClick={() => { setCalendarIsOpen(true) }} ref={ref}>
@@ -16,7 +17,9 @@ export default function ReactDatePicker({ dueDate, onDatePick, onDateRemove }) {
     ));
     return (
         <DatePicker selected={dueDate}
+
             onChange={onDatePick}
+            value={dueDate}
             customInput={<DateInput />}
             open={calendarIsOpen}
             onSelect={() => { setCalendarIsOpen(false) }}

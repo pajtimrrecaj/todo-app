@@ -1,12 +1,16 @@
 
 import './App.css';
-import './Today.css'
+import './TodoList.css'
 import Menu from './Menu';
 import Navbar from './Navbar';
 import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import TaskEditor from './TaskEditor';
+import TaskList from './TaskList';
+import SearchResults from './SearchResults';
+
+
+let listId = 0;
+let taskId = 0;
 
 
 function TodoList(props) {
@@ -14,13 +18,21 @@ function TodoList(props) {
   var options = { weekday: 'long', month: 'long', day: 'numeric' };
   var date = new Date().toLocaleDateString('en-us', options);
 
+  const selectedList = props.lists.filter(l =>
+    l.listId === props.selectedKey
+  );
+
+
   return (
-    <div className='today'>
-      <h1>Today</h1>
-      <p className='today-date'>{date}</p>
+    <div className='todo-list'>
+      <h1 className='list-name'>{selectedList[0].listName}</h1>
+      {props.selectedKey == 0 && <p className='today-date'>{date}</p>}
       {props.openTaskEditor ? <TaskEditor
+        key={props.selectedKey}
+        lists={props.lists}
         taskId={props.taskId}
         taskName={props.taskName}
+        description={props.description}
         dueDate={props.dueDate}
         openTaskEditor={props.openTaskEditor}
         onCancelClick={props.onCancelClick}
@@ -30,10 +42,10 @@ function TodoList(props) {
         onDueDateRemove={props.onDueDateRemove}
         onAddTaskClick={props.onAddTaskClick} /> :
         <button className='new-task-button' onClick={props.onNewTaskClick}>
-          <FontAwesomeIcon icon={faPlus} className='plus-icon' />
-          Add a task
+          <i class="bi bi-plus-lg"></i>
+          <p className='new-task-button-text'>Add a task</p>
         </button>}
-
+      <TaskList lists={props.lists} selectedKey={props.selectedKey} onChangeTask={props.onChangeTask} />
     </div >
   )
 }
@@ -41,14 +53,14 @@ function TodoList(props) {
 
 function App() {
   const [lists, setLists] = useState([{ listId: 0, listName: 'Today', tasks: [] }]);
-  const [selectedList, setSelectedList] = useState(lists[0]);
-  const [todoList, setTodoList] = useState([]);
   const [openTaskEditor, setOpenTaskEditor] = useState(false);
   const [taskName, setTaskName] = useState('');
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
-  const [taskId, setTaskId] = useState(0);
+  const [listName, setListName] = useState('');
   const [menuIsOpen, setMenuIsOpen] = useState(true);
+  const [selectedKey, setSelectedKey] = useState(0);
+  const [searchText, setSearchText] = useState('');
 
   function handleMenuToggle() {
     if (menuIsOpen) {
@@ -59,14 +71,33 @@ function App() {
     }
   }
 
-
-  function handleListSelect() {
+  function handleListSelect(listId) {
+    setSelectedKey(listId);
+    setOpenTaskEditor(false);
+    setSearchText('');
 
   }
 
-  function handleHomeButtonClick() {
-    setSelectedList(lists[0]);
+
+
+  function handleCreateList(listName) {
+
+    setLists([
+      ...lists,
+      {
+        listId: ++listId,
+        listName: listName,
+        tasks: []
+      }]
+    );
+    setListName('')
+
   }
+
+  function handleListNameSet(e) {
+    setListName(e.target.value)
+  }
+
 
   function handleTaskNameChange(e) {
     setTaskName(e.target.value);
@@ -76,8 +107,9 @@ function App() {
     setDescription(e.target.value)
   }
 
-  function handleDueDateChange(date) {
-    setDueDate(date)
+  function handleDueDateChange(d) {
+    setDueDate(d);
+
   }
 
   function handleDueDateRemove() {
@@ -93,45 +125,131 @@ function App() {
   }
 
   function handleTaskAddClick() {
-    setTaskId(taskId + 1);
-    setTodoList([
-      ...todoList,
-      {
-        id: taskId,
-        name: taskName,
-        description: description,
-        dueDate: dueDate,
+    setLists(
+      lists.map(l => {
+        if (l.listId === selectedKey) {
+          return (
+            {
+              ...l,
+              tasks: [
+                ...l.tasks,
+                {
+                  listName: l.listName,
+                  listId: l.listId,
+                  id: ++taskId,
+                  name: taskName,
+                  description: description,
+                  dueDate: dueDate,
+                  done: false
+                }
+              ]
+            }
+          )
+        } else
+          return l
       }
-    ])
-    setLists([
-      ...lists,
-      todoList
-    ])
+      )
+    );
+    setTaskName('');
+    setDescription('');
+    setDueDate('');
+  };
+
+  function handleChangeTask(task) {
+    setLists(
+      lists.map(l => {
+        if (l.listId == selectedKey) {
+          return (
+            {
+              ...l,
+              tasks:
+                l.tasks.map(t => {
+                  if (t.id == task.id) {
+                    return task;
+                  } else {
+                    return t;
+                  }
+                })
+
+            }
+          )
+
+        } else
+          return l
+      })
+    )
   }
 
+  function handleChangeSearchTask(task) {
+    setLists(
+      lists.map(l => {
+        if (l.listId == task.listId) {
+          return (
+            {
+              ...l,
+              tasks:
+                l.tasks.map(t => {
+                  if (t.id == task.id) {
+                    return task;
+                  } else {
+                    return t;
+                  }
+                })
 
+            }
+          )
 
+        } else
+          return l
+      })
+    )
+  }
 
+  function handleSearchTextChange(e) {
+    setSearchText(e.target.value);
+  }
 
   return (
     <div className='container'>
-      <Navbar onMenuToggle={handleMenuToggle} />
-      <Menu menuIsOpen={menuIsOpen} />
-      <TodoList
-        taskId={taskId}
-        taskName={taskName}
-        dueDate={dueDate}
-        lists={lists}
-        todoList={todoList}
-        openTaskEditor={openTaskEditor}
-        onNewTaskClick={handleNewTaskClick}
-        onTaskNameChange={handleTaskNameChange}
-        onDescriptionChange={handleDescriptionChange}
-        onCancelClick={handleCancelClick}
-        onDueDateChange={handleDueDateChange}
-        onDueDateRemove={handleDueDateRemove}
-        onAddTaskClick={handleTaskAddClick}
+      <Navbar
+        searchText={searchText}
+        onSearchTextChange={handleSearchTextChange}
       />
+      <Menu
+        lists={lists}
+        onCreateList={handleCreateList}
+        listName={listName}
+        onListNameSet={handleListNameSet}
+        onListSelect={handleListSelect}
+      />
+      {searchText === '' ?
+        <TodoList
+          selectedKey={selectedKey}
+          description={description}
+          taskName={taskName}
+          dueDate={dueDate}
+          lists={lists}
+          openTaskEditor={openTaskEditor}
+          onNewTaskClick={handleNewTaskClick}
+          onTaskNameChange={handleTaskNameChange}
+          onDescriptionChange={handleDescriptionChange}
+          onCancelClick={handleCancelClick}
+          onDueDateChange={handleDueDateChange}
+          onDueDateRemove={handleDueDateRemove}
+          onAddTaskClick={handleTaskAddClick}
+          onChangeTask={handleChangeTask}
+
+        />
+        : <SearchResults
+          searchText={searchText}
+          lists={lists}
+          onChangeTask={handleChangeSearchTask}
+
+        />
+
+
+      }
+
     </div>
 
   )

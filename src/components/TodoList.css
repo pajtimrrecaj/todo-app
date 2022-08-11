@@ -1,4 +1,4 @@
-h1 {
+.list-name {
     font-size: 23px;
     margin: 0;
     padding-bottom: 10px;
@@ -17,8 +17,23 @@ h1 {
     border: 0;
     background-color: transparent;
     cursor: pointer;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+
+}
+
+.new-task-button-text {
+    padding-left: 10px;
+    font-size: 14px;
 }
 
 .plus-icon {
     padding-right: 10px;
+}
+
+.todo-list {
+    margin-top: 30px;
+    margin-left: 70px;
+    width: 50%;
 }

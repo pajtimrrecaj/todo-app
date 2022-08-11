@@ -1,40 +1,116 @@
 .menu {
+    background-color: #f0f0f2;
+    height: 100%;
     width: 20%;
 }
 
-
-.menu-open {
-    background-color: #FFE4D6;
+.closed-menu {
+    background-color: white;
     height: 100%;
-    animation-duration: 2s;
-    animation-name: slidein;
+    width: 20%;
 }
 
-.menu-close {
-    animation-name: slideout;
-    animation-duration: 2s;
-}
-
-@keyframes slidein {
-
-    from {
-        width: 0%;
-    }
-
-    to {
-        width: 20%;
-    }
+.menu-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
 
 }
 
-@keyframes slideout {
+.menu-item:hover {
+    background-color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
 
-    from {
-        width: 20%;
-    }
 
-    to {
-        width: 0%;
-    }
+.bi-list-task {
+    font-size: 20px;
+    padding-left: 15px;
+    padding-top: 3px;
+    color: #1d1d1d;
 
+}
+
+.bi-plus-lg {
+    font-size: 21px;
+    color: #5268F5;
+
+}
+
+.menu-list-name {
+    margin: 0;
+    padding-left: 15px;
+    font-size: 16px;
+    font-weight: 400;
+
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-button {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-top: 20px;
+    margin-left: 40px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+
+
+}
+
+.list-section {
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-right: 4px;
+}
+
+
+
+.add-list-section {
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+.add-list-section:hover {
+    background-color: white;
+    border-radius: 6px;
+}
+
+.add-list-section:focus {
+    background-color: white;
+}
+
+.add-list-input {
+    outline: none;
+    border: none;
+    border-radius: 0;
+    padding-left: 15px;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+
+
+
+
+.add-list-button {
+    padding: 0;
+    display: flex;
+    border: 0;
+    cursor: pointer;
+    background-color: transparent;
+    padding-left: 15px;
 }

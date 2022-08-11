@@ -1,0 +1,76 @@
+hr {
+    background-color: rgb(221, 221, 221);
+    border: 0;
+    height: 1px;
+
+}
+
+.listed-task-name {
+    padding: 0;
+    margin: 0;
+}
+
+.listed-task-date {
+    display: flex;
+    align-items: center;
+}
+
+.listed-task-date-text {
+    font-size: 14px;
+    padding-top: 3px;
+}
+
+
+input[type='checkbox'] {
+    align-self: flex-start;
+    width: 18px;
+    height: 18px;
+
+}
+
+.listed-task {
+    display: flex;
+    width: 100%;
+
+}
+
+.listed-task-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.listed-task-list-name {
+    margin: 0;
+
+}
+
+.listed-task-name {
+    padding: 0;
+    margin: 0;
+}
+
+.listed-task-name-done {
+    padding: 0;
+    text-decoration: line-through;
+    margin: 0;
+}
+
+.listed-task-data {
+    padding-left: 23px;
+    width: 100%;
+
+}
+
+
+
+.finished-tasks-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgb(29, 29, 29);
+
+}
